@@ -8,7 +8,12 @@ import imageRouter from './routes/imageRoutes.js';
 const PORT = process.env.PORT || 4000;
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://imagify-frontend-vert.vercel.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 app.use('/api/users', userRouter);
 app.use('/api/image', imageRouter);
